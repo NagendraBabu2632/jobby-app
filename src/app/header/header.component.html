@@ -1,0 +1,23 @@
+<nav class="nav-container">
+    <ul class="header-ul-container">
+      <li class="logo-container">
+        <a routerLink="/home" class="link">
+          <img class="logo" src="{{ websiteLogo }}" alt="website logo" />
+        </a>
+      </li>
+      <li class="home-jobs-container">
+        <a routerLink="/home" class="link">
+          <span class="nav-text">Home</span>
+        </a>
+        <a routerLink="/jobs" class="link">
+          <span class="nav-text">Jobs</span>
+        </a>
+      </li>
+      <li>
+        <button class="btn-logout" (click)="onClickLogout()">
+          Logout
+        </button>
+      </li>
+    </ul>
+  </nav>
+  

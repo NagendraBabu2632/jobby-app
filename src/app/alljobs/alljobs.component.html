@@ -1,0 +1,101 @@
+<app-header></app-header>
+<div class="all-jobs-container">
+    <div class="side-bar-container">
+      <!-- profileview -->
+      <div class="profile-container">
+        <img src="https://assets.ccbp.in/frontend/react-js/male-avatar-img.png" class="profile-icon" alt="profile" />
+        <h1 class="profile-name">Kesava</h1>
+        <p class="profile-description">Lead Software Developer and AI-ML expert</p>
+      </div>
+      <!-- profileview end -->
+
+      <hr class="hr-line" />
+      <h1 class="text">Type of Employment</h1>
+      <!-- Render Checkboxes -->
+      <ul class="check-boxes-container">
+        <li *ngFor="let each of employmentTypesList" class="li-container" [attr.key]="each.employmentTypeId">
+          <input class="input" [id]="each.employmentTypeId" type="checkbox" (change)="selectItems(each)" />
+          <label class="label" [attr.for]="each.employmentTypeId">{{ each.label }}</label>
+        </li>
+      </ul>
+      
+      <!-- end checkboxes -->
+      <hr class="hr-line" />
+      <h1 class="text">Salary Range</h1>
+      <!-- Render Radio Buttons -->
+      <ul class="radio-button-container">
+        <li *ngFor="let eachItems of salaryRangesList" class="li-container" [attr.key]="eachItems.salaryRangeId">
+          <input class="radio" [id]="eachItems.salaryRangeId" type="radio" name="option" (change)="selectRadio(eachItems)" />
+          <label class="label" [attr.for]="eachItems.salaryRangeId">{{ eachItems.label }}</label>
+        </li>
+      </ul>
+      
+      <!-- radio buttons end -->
+    </div>
+    <div class="jobs-container">
+      <div>
+        <!-- Search Input -->
+        <input
+        class="search-input"
+        type="text"
+        placeholder="Search"
+        #srinput
+        (input)="setsearchInput(srinput)"
+      />
+        <button
+          type="button"
+          class="search-button"
+        >
+        </button>
+      </div>
+      <!-- Render Jobs Status -->
+      <div class="no-jobs-container" *ngIf="jobsList && jobsList.length == 0">
+        <img class="no-jobs-img" src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png" alt="no jobs" />
+        <h1>No jobs found</h1>
+        <p>We could not find any jobs. Try other filters.</p>
+      </div>
+      <!-- success view -->
+      <ul class="ul-job-items-container" *ngIf="jobsList && jobsList.length > 0">
+        <li *ngFor="let eachItem of jobsList" class="li-job-item" [routerLink]="'/jobItem/' + eachItem.id">
+            <a  class="link-item" >
+                <div class="job-item-container">
+                  <div class="first-part-container">
+                    <div class="img-title-container">
+                      <img class="company-logo" [src]="eachItem['company_logo_url']" alt="company logo" />
+                      <div class="title-rating-container">
+                        <h1 class="title-heading">{{eachItem['title']}}</h1>
+                        <div class="star-rating-container">
+                          <i class="star-icon"></i>
+                          <p class="rating-text">{{eachItem['rating']}}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="location-package-container">
+                      <div class="location-job-type-container">
+                        <div class="location-icon-location-container">
+                          <i class="location-icon">
+                          </i>
+                          <p class="location">{{eachItem.location}}</p>
+                        </div>
+                        <div class="employment-type-icon-employment-type-container">
+                          <p class="job-type">{{eachItem['employment_type']}}</p>
+                        </div>
+                      </div>
+                      <div>
+                        <p class="package">{{eachItem['package_per_annum']}}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="item-hr-line" />
+                  <div class="second-part-container">
+                    <h1 class="description-heading">Description</h1>
+                    <p class="description-para">{{eachItem.job_description}}</p>
+                  </div>
+                </div>
+              </a>   
+        </li>
+    </ul>
+      
+    </div>
+  </div>
+  

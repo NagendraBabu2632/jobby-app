@@ -1,0 +1,78 @@
+<app-header></app-header>
+<div class="job-item-container" style="margin-top: 10px; margin-left: 20px; margin-right: 20px">
+    <div class="first-part-container">
+      <div class="img-title-container">
+        <img class="company-logo" [src]="companyLogoUrl" alt="job details company logo" />
+        <div class="title-rating-container">
+          <h1 class="title-heading">{{jobTitle}}</h1>
+          <div class="star-rating-container">
+            <span class="star-icon">★</span>
+            <p class="rating-text">{{ rating }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="location-package-container">
+        <div class="location-job-type-container">
+          <div class="location-icon-location-container">
+            <span class="location-icon">Location Icon</span>
+            <p class="location">{{ location }}</p>
+            <p class="job-type">{{ employmentType }}</p>
+          </div>
+        </div>
+        <div class="package-container">
+          <p class="package">{{ packagePerAnnum }}</p>
+        </div>
+      </div>
+    </div>
+    <hr class="item-hr-line" />
+    <div class="second-part-container">
+      <div class="description-visit-container">
+        <h1 class="description-job-heading">Description</h1>
+        <a class="visit-anchor" [href]="companyWebsiteUrl"  target="_blank">Visit External Link</a>
+      </div>
+      <p class="description-para">{{ jobDescription }}</p>
+    </div>
+    <h1>Skills</h1>
+    <ul class="ul-job-details-container">
+      <li *ngFor="let eachItem of skills" class="li-job-details-container">
+        <img class="skill-img" [src]="eachItem.image_url" [alt]="eachItem.name" />
+        <p>{{ eachItem.name }}</p>
+      </li>
+    </ul>
+    <div class="company-life-img-container" *ngIf="lifeAtCompany">
+      <div class="life-heading-para-container">
+        <h1>Life at Company</h1>
+        <p>{{ lifeAtCompany.description }}</p>
+      </div>
+      <img [src]="lifeAtCompany.image_url" alt="life at company" />
+    </div>
+  </div>
+  <h1 class="similar-jobs-heading">Similar Jobs</h1>
+  <ul class="similar-jobs-ul-container">
+    <li *ngFor="let eachItem of similarJobs" class="similar-job-li-container" (click)="sendid(eachItem.id)">
+        <div class="img-job-title-container">
+            <img class="company-job-logo" [src]="eachItem['company_logo_url']" alt="similar job company logo" />
+            <div class="title-job-rating-container">
+              <h1 class="title-job-heading">{{ eachItem.title }}</h1>
+              <div class="star-job-rating-container">
+                <span class="star-job-icon">★</span>
+                <p class="rating-job-text">{{ eachItem.rating }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="second-part-job-container">
+            <h1 class="description-job-heading">Description</h1>
+            <p class="description-job-para">{{ eachItem.job_description }}</p>
+          </div>
+          <div class="location-job-details-type-container">
+            <div class="location-job-icon-location-container">
+              <span class="location-job-icon">📍</span>
+              <p class="location-job">{{ eachItem.location }}</p>
+            </div>
+            <div class="employment-job-type-icon-employment-type-container">
+              <p class="job-type">{{ eachItem.employment_type }}</p>
+            </div>
+          </div>
+    </li>
+  </ul>
+  
